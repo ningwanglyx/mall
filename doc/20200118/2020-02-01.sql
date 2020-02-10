@@ -21,4 +21,9 @@ CREATE TABLE `mall`.`user_red_packet`  (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 COMMENT = '抢红包表';
 
- insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第一个红包');
+insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第一个红包');
+insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第二个红包');
+insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第三个红包');
+insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第四个红包');
+insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第五个红包');
+insert into red_packet (userId, amount, sendDate, total, perAmount, stock, version, note) values (23119313, 200000, now(), 20000, 10, 20000, 1, '第六个红包');

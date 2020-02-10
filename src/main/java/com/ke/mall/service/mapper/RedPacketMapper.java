@@ -10,11 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 public interface RedPacketMapper {
     /**
-     * 获取红包信息
+     * 获取红包信息,不加锁
      * @param id
      * @return
      */
     RedPacket selectByPrimaryKey(@Param(value = "id") Integer id);
+
+    /**
+     * 获取红包信息,悲观锁实现方式
+     * @param id
+     * @return
+     */
+    RedPacket getRedPacketForUpdate(@Param(value = "id") Integer id);
 
     /**
      * 扣减红包数
@@ -22,6 +29,14 @@ public interface RedPacketMapper {
      * @return
      */
     int decrementRedPacket(@Param(value = "id") Integer id);
+
+    /**
+     * CAS乐观锁扣减红包数
+     * @param id
+     * @param version
+     * @return
+     */
+    int decrementRedPacketByVerison(@Param(value = "id") Integer id, @Param(value = "version") Integer version);
 
 
 

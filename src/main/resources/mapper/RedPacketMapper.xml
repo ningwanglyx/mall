@@ -23,14 +23,26 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="getRedPacketForUpdate" parameterType="integer" resultType="com.ke.mall.model.RedPacket">
+    select
+    <include refid="Base_Column_List" />
+    from red_packet
+    where id = #{id,jdbcType=INTEGER} for update
+  </select>
+
   <update id="decrementRedPacket" parameterType="integer">
     update red_packet
     set stock = stock - 1
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
-
+  <update id="decrementRedPacketByVerison" parameterType="integer">
+    update red_packet
+    set stock = stock - 1,
+    version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+    and version = #{version,jdbcType=INTEGER}
+  </update>
 
 
 

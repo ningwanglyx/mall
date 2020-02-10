@@ -28,9 +28,9 @@ public class UserRedPacketService implements IUserRedPacketService {
     private static final int FAILED = 0;
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED)
     public int grapRedPacket(Integer redPacketId, Integer userId) {
-        RedPacket redPacket = redPacketMapper.selectByPrimaryKey(redPacketId);
+        RedPacket redPacket = redPacketMapper.getRedPacketForUpdate(redPacketId);
         if(redPacket.getStock() > 0){
             //扣减红包数
             redPacketMapper.decrementRedPacket(redPacketId);
@@ -45,6 +45,36 @@ public class UserRedPacketService implements IUserRedPacketService {
             return res;
         }
         //失败返回
+        return 0;
+    }
+
+    @Override
+    @Transactional
+    //加入重试机制，避免红包没有被抢，一起请求可以重试三次
+    public int grapRedPacketForVersion(Integer redPacketId, Integer userId) {
+        for(int i = 0; i < 3; i++){
+            RedPacket redPacket = redPacketMapper.selectByPrimaryKey(redPacketId);
+            if(redPacket.getStock() > 0){
+                //通过version旧值来进行CAS操作
+                int update = redPacketMapper.decrementRedPacketByVerison(redPacketId, redPacket.getVersion());
+                //数据未更新，说明其他线程已经修改过数据，抢红包失败
+                if(update == 0){
+                    continue;
+                }
+                UserRedPacket userRedPacket = new UserRedPacket();
+                userRedPacket.setUserId(userId);
+                userRedPacket.setRedPacketId(redPacketId);
+                userRedPacket.setPerAmount(redPacket.getPerAmount());
+                userRedPacket.setNote("抢红包 " + redPacketId);
+                userRedPacket.setGrabTime(new Date());
+                //插入抢红包信息
+                int res = userRedPacketMapper.insert(userRedPacket);
+                return res;
+            } else {
+                //一旦没有红包，则马上返回
+                return FAILED;
+            }
+        }
         return 0;
     }
 }

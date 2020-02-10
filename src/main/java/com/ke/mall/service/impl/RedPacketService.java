@@ -20,13 +20,13 @@ public class RedPacketService implements IRedPacketService {
     private RedPacketMapper redPacketMapper;
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED)
     public RedPacket getRedPacket(Integer id) {
         return redPacketMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED)
     public int decrementRedPacket(Integer id) {
         return redPacketMapper.decrementRedPacket(id);
     }
