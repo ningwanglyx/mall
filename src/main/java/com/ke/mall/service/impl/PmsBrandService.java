@@ -31,8 +31,8 @@ public class PmsBrandService implements IPmsBrandService {
 
     @Override
     @Transactional
-    public void createBrand(PmsBrand brand) {
-        pmsBrandMapper.insert(brand);
+    public int createBrand(PmsBrand brand) {
+        return pmsBrandMapper.insert(brand);
     }
 
     @Override

@@ -12,6 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
+ * 文档地址 http://localhost:8080/swagger-ui.html
  * @Summary: Swagger2 API文档的配置
  * @Author: YangxingLiu
  * @Since: 2020/1/18 17:08

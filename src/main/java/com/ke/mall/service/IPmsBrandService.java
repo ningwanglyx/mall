@@ -22,7 +22,7 @@ public interface IPmsBrandService {
      * @param brand
      * @return
      */
-    void createBrand(PmsBrand brand);
+    int createBrand(PmsBrand brand);
 
     /**
      * update brand

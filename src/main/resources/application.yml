@@ -24,6 +24,14 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
+rabbitmq:
+  host: localhost
+  prot: 15672
+  virtual-host: /mall
+  username: mall
+  password: mall
+  publisher-confirms: ture
+
 #自定义redis key
 redis:
   key:
