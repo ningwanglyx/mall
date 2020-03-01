@@ -25,7 +25,10 @@ public class RedisConfig {
     //设置RedisTemplate的序列化器
     private void initRedisTemplate(){
         RedisSerializer stringSerializer = redisTemplate.getStringSerializer();
+        redisTemplate.setDefaultSerializer(stringSerializer);
         redisTemplate.setKeySerializer(stringSerializer);
-        redisTemplate.setHashKeySerializer(stringSerializer);
+        //将redisTempalte的值序列化器设置为String类型
+        redisTemplate.setValueSerializer(stringSerializer);
+        //redisTemplate.setHashKeySerializer(stringSerializer);
     }
 }
