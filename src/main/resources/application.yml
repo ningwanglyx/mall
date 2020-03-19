@@ -26,8 +26,8 @@ mybatis:
 
 rabbitmq:
   host: localhost
-  prot: 15672
-  virtual-host: /mall
+  port: 5672
+  virtual-host: /mall # rabbitmq的虚拟host
   username: mall
   password: mall
   publisher-confirms: ture

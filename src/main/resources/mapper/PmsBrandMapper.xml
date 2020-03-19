@@ -22,6 +22,13 @@
     picLoc, brandStory, ctime, state
   </sql>
 
+  <select id="fondByLogo" parameterType="string" resultType="com.ke.mall.model.PmsBrand">
+    select * from pms_brand
+    where logo = #{logo}
+    order by ctime desc
+    limit 1
+  </select>
+
   <select id="findAll" resultType="com.ke.mall.model.PmsBrand">
     select
     <include refid="Base_Column_List" />
@@ -159,10 +166,10 @@
   </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from pms_brand
     where id = #{id,jdbcType=BIGINT}
+    limit 1
   </select>
 
 

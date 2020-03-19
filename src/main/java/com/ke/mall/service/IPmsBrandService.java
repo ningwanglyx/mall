@@ -2,6 +2,7 @@ package com.ke.mall.service;
 
 import com.github.pagehelper.PageInfo;
 import com.ke.mall.model.PmsBrand;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -41,7 +42,14 @@ public interface IPmsBrandService {
      * @param id
      * @return
      */
-    List<PmsBrand> findById(Long id);
+    PmsBrand findById(Long id);
+
+    /**
+     * 根据logo名称查询品牌信息
+     * @param logo
+     * @return
+     */
+    PmsBrand findByLogo(@Param(value = "logo") String logo);
 
     /**
      * 分页查询

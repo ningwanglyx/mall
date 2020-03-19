@@ -4,15 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.ke.mall.model.PmsBrand;
 import com.ke.mall.service.IPmsBrandService;
-import com.ke.mall.service.impl.PmsBrandService;
+import com.ke.mall.service.IRedisPmsBrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +25,8 @@ import java.util.List;
 public class PmsBrandController {
     @Autowired
     private IPmsBrandService pmsBrandService;
+    @Autowired
+    private IRedisPmsBrandService redisPmsBrandService;
 
     @GetMapping("/listAll")
     @ApiOperation(value = "列表查询")
@@ -41,7 +39,7 @@ public class PmsBrandController {
 
     @PutMapping("/create")
     @ApiOperation(value = "新增品牌")
-    public JSONObject createBrand(@RequestParam(value = "brand") PmsBrand pmsBrand) {
+    public JSONObject createBrand(@RequestBody PmsBrand pmsBrand) {
         Integer res = pmsBrandService.createBrand(pmsBrand);
         JSONObject result = new JSONObject();
         if(res == 1){
@@ -65,7 +63,7 @@ public class PmsBrandController {
     @ApiOperation(value = "品牌详情")
     public JSONObject brand(@PathVariable("id") Long id) {
         JSONObject res = new JSONObject();
-        List<PmsBrand> list = pmsBrandService.findById(id);
+        PmsBrand list = pmsBrandService.findById(id);
         res.put("data", list);
         return res;
     }
@@ -77,6 +75,14 @@ public class PmsBrandController {
         PageInfo<PmsBrand> list = pmsBrandService.findByPage(pageNum, pageSize);
         JSONObject res = new JSONObject();
         res.put("data", list);
+        return res;
+    }
+
+    @GetMapping("/query/{logo}")
+    public JSONObject queryBrandById(@PathVariable(value = "logo") String logo){
+        String brand = redisPmsBrandService.getPmsBrand(logo);
+        JSONObject res = new JSONObject();
+        res.put("data", brand);
         return res;
     }
 

@@ -50,8 +50,13 @@ public class PmsBrandService implements IPmsBrandService {
     }
 
     @Override
-    public List<PmsBrand> findById(Long id) {
+    public PmsBrand findById(Long id) {
         return pmsBrandMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public PmsBrand findByLogo(String logo) {
+        return pmsBrandMapper.fondByLogo(logo);
     }
 
     @Override

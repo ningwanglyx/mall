@@ -22,9 +22,11 @@ public interface PmsBrandMapper {
 
     int deleteByPrimaryKey(@Param("id") Long id);
 
-    List<PmsBrand> selectByPrimaryKey(@Param("id") Long id);
+    PmsBrand selectByPrimaryKey(@Param("id") Long id);
 
     int updateByPrimaryKeySelective(PmsBrand record);
+
+    PmsBrand fondByLogo(@Param(value = "logo") String logo);
 
     //List<PmsBrand> findList(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
