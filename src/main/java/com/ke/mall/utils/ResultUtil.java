@@ -4,7 +4,7 @@ import com.ke.mall.entity.ResultBean;
 import com.ke.mall.entity.ResultEnum;
 
 /**
- * @Summary: 测试提交
+ * @Summary: 测试提交。。。
  * @Author: YangxingLiu
  * @Since: 2020/3/1 15:54
  */
