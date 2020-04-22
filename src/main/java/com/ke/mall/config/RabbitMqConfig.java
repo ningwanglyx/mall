@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @Author: YangxingLiu
  * @Since: 2020/3/5 22:13
  */
-@Configuration
+//@Configuration
 public class RabbitMqConfig {
     /**
      * 订单消息实际消费队列绑定的交换机

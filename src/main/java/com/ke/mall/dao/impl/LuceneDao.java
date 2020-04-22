@@ -20,7 +20,7 @@ import java.util.List;
  * @Author: YangxingLiu
  * @Since: 2020/3/1 16:28
  */
-@Repository
+//@Repository
 public class LuceneDao implements ILuceneDao {
     @Autowired
     private IndexWriter indexWriter;

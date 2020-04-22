@@ -22,7 +22,7 @@ import java.nio.file.Paths;
  * @Author: YangxingLiu
  * @Since: 2020/3/1 13:57
  */
-@Configuration
+//@Configuration
 public class LuceneConfig {
     /**
      * lucene索引存放位置
