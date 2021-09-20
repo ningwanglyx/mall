@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @summary
  * @since 2020/4/21
  **/
-@RestController
+//@RestController
 @RequestMapping(value = "/kafka")
 public class KafkaConsumerController {
     @Autowired
@@ -23,7 +23,7 @@ public class KafkaConsumerController {
 
     @GetMapping("/test")
     public String sendMessage(@RequestParam(value = "message") String message){
-        kafkaTemplate.send("mall-topic", message);
+        kafkaTemplate.send("mall-0709", message);
         return "OK";
     }
 }

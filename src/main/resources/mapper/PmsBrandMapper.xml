@@ -31,9 +31,8 @@
 
   <select id="findAll" resultType="com.ke.mall.model.PmsBrand">
     select
-    <include refid="Base_Column_List" />
+    *
     from pms_brand
-    where state = 1
   </select>
 
   <insert id="insert" parameterType="com.ke.mall.model.PmsBrand" useGeneratedKeys="true" keyProperty="id" keyColumn="id">

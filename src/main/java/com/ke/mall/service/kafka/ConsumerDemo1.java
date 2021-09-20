@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
  * @summary
  * @since 2020/4/22
  **/
-@Component
+//@Component
 public class ConsumerDemo1 {
-    @KafkaListener(topics = "mall-topic")
+    @KafkaListener(topics = "mall-0709")
     public void listen(ConsumerRecord record){
         System.out.println(record.topic() + " " + record.offset() + " " + record.value());
 

@@ -1,16 +1,13 @@
 package com.ke.mall.controller;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SessionCallback;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Summary: 学习redis操作用的类
@@ -36,8 +33,7 @@ public class RedisTestController {
         redisTemplate.opsForSet();
         redisTemplate.opsForZSet();
         redisTemplate.opsForHash();
-
-        redisTemplate.opsForValue().set("key1", "value1");
+        /*redisTemplate.opsForValue().set("key1", "value1");
         String value1 = (String) redisTemplate.opsForValue().get("key1");
         System.out.println("value1: " + value1);
 
@@ -55,7 +51,11 @@ public class RedisTestController {
         String appendValue2 = (String) redisTemplate.opsForValue().get("key2");
         System.out.println("appendValue2: " + appendValue2);
         String nothing = (String) redisTemplate.opsForValue().get("key1");
-        System.out.println("nothing: " + nothing);
+        System.out.println("nothing: " + nothing);*/
+        redisTemplate.opsForValue().set("increLong", 2L);
+        redisTemplate.opsForValue().increment("increLong", 20L);
+        redisTemplate.delete("heheh");
+        System.out.println("==========" + redisTemplate.opsForValue().get("increLong").toString());
 
         return "ok";
     }
@@ -99,5 +99,67 @@ public class RedisTestController {
             System.out.println(o);
         }
         return "test3";
+    }
+
+    /**
+     * 测试opsForList
+     * @return
+     */
+    @GetMapping("/test4")
+    public String test4(){
+        ListOperations<String, String> listOperations = redisTemplate.opsForList();
+        //List<String> list = new ArrayList<>();
+        listOperations.leftPush("firstList", "bob");
+        //list.add("bob");
+        //list.add("ted");
+        listOperations.leftPush("firstList", "jack");
+        listOperations.leftPush("firstList", "li");
+        System.out.println(listOperations.size("firstList"));
+        System.out.println(listOperations.index("firstList", 0));
+        System.out.println(listOperations.index("firstList", 1));
+        System.out.println(listOperations.index("firstList", 2));
+        StringUtils.equals(null, null);
+        return "test4";
+    }
+
+    @GetMapping("/test5")
+    public void test5(){
+        ListOperations listOperations = redisTemplate.opsForList();
+        /*System.out.println("1001有序集合的初始长度为：" + listOperations.size("1001"));
+        listOperations.leftPush("1001", "1");
+        Integer i = 2;
+        listOperations.leftPush("1001", i.toString());
+        System.out.println(listOperations.size("1001"));
+        System.out.println(listOperations.index("1001", 0));
+        int o1 = (int) listOperations.index("1001", 1);*/
+
+        //listOperations.leftPush("key", "people");
+        //listOperations.leftPush("key", "animal");
+        System.out.println(listOperations.size("key"));
+        //System.out.println(listOperations.index("key", 0));
+        //System.out.println(listOperations.index("key", 1));
+        //System.out.println(listOperations.index("key", 2));
+        List<String> res = listOperations.range("key",0, listOperations.size("key")-1);
+        for (String re : res) {
+            System.out.println(re);
+        }
+    }
+
+    @GetMapping("/test6")
+    public void test6(){
+        SetOperations setOperations = redisTemplate.opsForSet();
+        setOperations.add("one", "bob");
+        setOperations.add("one", "tom");
+        setOperations.add("two", "ami");
+        //添加元素
+        setOperations.add("two", "bob");
+        //获取set中的全部元素
+        Set<String> set = setOperations.members("one");
+        //交集
+        Set<String> set2 = setOperations.difference("one", "two");
+        //并集
+        setOperations.union("one", "two");
+        //是否包含
+        setOperations.isMember("one", "tom");
     }
 }

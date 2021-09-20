@@ -16,7 +16,7 @@ public class RabbitMqConfig {
      * 订单消息实际消费队列绑定的交换机
      * @return
      */
-    @Bean
+    //@Bean
     DirectExchange orderDirect(){
         return (DirectExchange) ExchangeBuilder
                 .directExchange(QueueEnum.QUEUE_ORDER_CANCEL.getExchange())
@@ -28,7 +28,7 @@ public class RabbitMqConfig {
      * 订单延迟队列绑定的交换机
      * @return
      */
-    @Bean
+    //@Bean
     DirectExchange orderTtlDirect(){
         return (DirectExchange) ExchangeBuilder
                 .directExchange(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getExchange())
@@ -40,7 +40,7 @@ public class RabbitMqConfig {
      * 订单消实际费队列
      * @return
      */
-    @Bean
+    //@Bean
     public Queue orderQueue(){
         return new Queue(QueueEnum.QUEUE_ORDER_CANCEL.getName());
     }
@@ -49,7 +49,7 @@ public class RabbitMqConfig {
      * 订单延迟队列（死信队列）
      * @return
      */
-    @Bean
+    //@Bean
     public Queue orderTtlQueue(){
         return QueueBuilder
                 .durable(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getName())
@@ -64,7 +64,7 @@ public class RabbitMqConfig {
      * @param orderQueue
      * @return
      */
-    @Bean
+    //@Bean
     Binding orderBinding(DirectExchange orderDirect, Queue orderQueue){
         return BindingBuilder
                 .bind(orderQueue)
@@ -78,7 +78,7 @@ public class RabbitMqConfig {
      * @param orderTtlQueue
      * @return
      */
-    @Bean
+    //@Bean
     Binding orderTtlBinding(DirectExchange orderTtlDirect, Queue orderTtlQueue){
         return BindingBuilder
                 .bind(orderTtlQueue)
