@@ -15,6 +15,6 @@ public class SmsJob {
 
     @Scheduled(cron = "0 */30 * * * ?")
     public void test(){
-        System.out.println("你好——————————————————————————————");
+        System.out.println("你好———————————————   ———————————————");
     }
 }
