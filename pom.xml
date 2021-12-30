@@ -163,8 +163,11 @@
             </exclusions>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>com.aerospike</groupId>
+            <artifactId>aerospike-client</artifactId>
+            <version>4.0.6</version>
+        </dependency>
 
     </dependencies>
 
