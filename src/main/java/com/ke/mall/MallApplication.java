@@ -10,7 +10,7 @@ public class MallApplication {
 
     public static void main(String[] args) {
         // lyxtest
-        // dev_20220101_v1
+        // dev_20220101_v2
         SpringApplication.run(MallApplication.class, args);
     }
 
