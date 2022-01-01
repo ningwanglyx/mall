@@ -11,6 +11,7 @@ public class MallApplication {
     public static void main(String[] args) {
         // lyxtest
         // dev_20220101_v2
+        // push test
         SpringApplication.run(MallApplication.class, args);
     }
 
