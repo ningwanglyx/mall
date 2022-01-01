@@ -14,6 +14,7 @@ public class MallApplication {
         // push test
         // push tset 2
         // push test 3
+        // push test 4
         SpringApplication.run(MallApplication.class, args);
     }
 
