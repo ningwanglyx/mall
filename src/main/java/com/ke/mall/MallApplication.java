@@ -13,6 +13,7 @@ public class MallApplication {
         // dev_20220101_v2
         // push test
         // push tset 2
+        // push test 3
         SpringApplication.run(MallApplication.class, args);
     }
 
