@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class MallApplication {
 
     public static void main(String[] args) {
+        // lyxtest
         SpringApplication.run(MallApplication.class, args);
     }
 
