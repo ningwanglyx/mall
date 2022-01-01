@@ -12,6 +12,7 @@ public class MallApplication {
         // lyxtest
         // dev_20220101_v2
         // push test
+        // push tset 2
         SpringApplication.run(MallApplication.class, args);
     }
 
