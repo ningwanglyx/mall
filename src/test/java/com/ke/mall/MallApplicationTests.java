@@ -24,6 +24,7 @@ public class MallApplicationTests {
     //@Autowired
     //private TestRestTemplate restTemplate;
     // tst
+    // test git merge
 
     @Test
     public void contextLoads() {
