@@ -21,7 +21,7 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MallApplicationTests {
-    @Autowired
+    //@Autowired
     //private TestRestTemplate restTemplate;
 
     @Test
