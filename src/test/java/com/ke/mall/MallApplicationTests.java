@@ -23,6 +23,7 @@ import java.util.Map;
 public class MallApplicationTests {
     //@Autowired
     //private TestRestTemplate restTemplate;
+    // tst
 
     @Test
     public void contextLoads() {
